@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sinatra Riot.js Starter App</title>
+    <script src="/reqwest.js" charset="utf-8"></script>
+    <script src="/riot+compiler.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <app></app>
+
+    <script type="riot/tag">
+      <app>
+        <h1>Sinatra Riot.js Starter</h1>
+        <div each={item in items}>
+          {item.body}
+        </div>
+
+        <h4>Documentation</h4>
+        <a href="http://riotjs.com" target="_blank">Riot.js</a>
+        <a href="http://www.sinatrarb.com" target="_blank">Sinatra Ruby</a>
+
+        reqwest('/items.json', function(resp){
+          window.items = resp
+          riot.update()
+        })
+      </app>
+    </script>
+
+    <script>riot.mount('*')</script>
+  </body>
+</html>
